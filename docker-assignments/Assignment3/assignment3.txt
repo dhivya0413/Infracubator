@@ -1,0 +1,7 @@
+//build app via dockerfile multistage
+docker build -t go-app-test .
+
+//run app
+docker run -d -p 8081:8080 go-app-test
+
+ 

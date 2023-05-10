@@ -1,0 +1,14 @@
+# build stage
+FROM golang:latest AS GolangBuilder
+COPY main.go /go/src/app/
+WORKDIR /go/src/app/
+RUN go mod init
+RUN go get -d -v ./...
+RUN go install -v ./...
+RUN go build -o go-app-test
+
+#run stage
+FROM golang:latest AS runstage
+WORKDIR /app
+COPY --from=GolangBuilder /go/src/app/go-app-test /app
+CMD ["./go-app-test"]
