@@ -1,0 +1,28 @@
+Assignment 1 -
+
+Create a Pod specification for the metadataservice
+image : luckyganesh/metadata-service:v1 ( for M1 chip - luckyganesh/metadata-service:v1-arm )
+Port to be exposed 8080
+Check the logs
+Check the Pod IP
+Hit the POD ip with /metadata url path from either insider minikube ( minikube ssh ) or colima ( colima ssh ) based on whatever you are using 
+Describe the POD
+Exec into the container using /bin/sh command.
+
+
+
+ kubectl run metadata-java-pod --image=luckyganesh/metadata-service:v1 --port=8080 --expose
+
+ kubectl logs  metadata-java-pod
+
+ IP: 10.244.0.11
+
+ Inside minikube ssh ->
+
+ curl http://10.244.0.11:8080/metadata 
+
+ kubectl describe pod metadata-java-pod
+
+ kubectl exec -it metadata-java-pod -- /bin/sh
+
+
