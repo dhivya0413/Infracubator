@@ -1,0 +1,19 @@
+Run the mongo db using pv and pvc
+use hostpath to define pv
+check the storage 
+
+
+create pv and pvc and recreate mongo-deployment by configuring pvc in it
+
+1. kubectl create -f pvc.yml
+2. kubectl create -f pv.yml
+3. kubectl delete deployment mongos-deployment-5d8dcb78cb-sttnm 
+4. kubectl create -f mongo-deployment.yml 
+
+-> $ curl --header 'Content-Type: application/json' --data '{"group": "Dhivya","name": "city", "value": "Bangalore"}'  http://10.0.2.15:30000/metadata
+
+-> $ curl http://10.0.2.15:30000/metadata
+
+
+Verified the data /data/db inside pod and /metaservicedata in minikube, both looks similar after deleted and recreated
+

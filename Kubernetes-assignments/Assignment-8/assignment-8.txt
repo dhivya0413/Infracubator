@@ -1,0 +1,7 @@
+use a env mongo url in metadata service
+
+
+1. kubectl create -f config.yml
+// recreate metadata service deployment
+
+2. kubectl create -f metadata-deployment.yml

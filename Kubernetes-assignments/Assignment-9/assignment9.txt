@@ -1,0 +1,9 @@
+Use a secret mongo url in metadataservice
+
+Encode mongouri to base64 format
+
+1. kubectl create -f secret.yml
+
+// recreate metadata service deployment
+
+2. kubectl create -f metadata-deployment.yml
