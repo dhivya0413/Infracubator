@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+  labels:
+    tier: mongo-service-deployment
+spec:
+  type: ClusterIP
+  selector:
+    tier: mongo-service-deployment
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017

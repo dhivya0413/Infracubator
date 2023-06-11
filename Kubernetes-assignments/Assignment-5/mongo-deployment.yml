@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongos-deployment
+  labels:
+    tier: mongo-servd
+spec:
+  selector:
+   matchLabels:
+      tier: mongo-service-deployment
+  template:
+    metadata:
+      name: mongo-md
+      labels:
+        tier: mongo-service-deployment
+    spec:
+      containers:
+      - name: mongocsss
+        image: mongo
+        ports:
+        - containerPort: 8080

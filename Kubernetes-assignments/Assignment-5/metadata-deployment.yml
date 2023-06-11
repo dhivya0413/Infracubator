@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metadataservice-deployment
+  labels:
+    tier: metadatas-deployment
+spec:
+  selector:
+   matchLabels:
+      tier: metadatas-app
+  template:
+    metadata:
+      name: metadataservice-pod
+      labels:
+        tier: metadatas-app
+    spec:
+      containers:
+      - name: metadatacon
+        image: luckyganesh/metadata-service:v2-arm
+        ports:
+          - containerPort: 8080
+        env:
+          - name: MONGODB_URI
+            value: mongodb://mongo/metadata
+

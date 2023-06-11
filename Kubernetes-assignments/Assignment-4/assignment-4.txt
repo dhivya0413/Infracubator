@@ -1,0 +1,29 @@
+1.Deploy new pod using mongodb image
+2. Create ClusterIp Service for mongodb with service name as mongo, so that database is availabe via dns name
+(usually runs by default 27017)
+
+3. change image in  metadataservice to image (connect to database at mongo hostname by passing MONGODB_URI= mongodb://mongo/metadata env
+variable inside container spec)
+
+4. try again post and get metadata service (start first mongo and metadataservice)
+
+
+1. kubectl create -f mongo-pod.yml (define mongo config in mongo-pod.yml)
+
+2. kubectl create -f mongo-service.yml 
+
+3. kubectl create -f metadata-pod.yml (by passing env)
+
+4. kubectl create -f nodeservice-def.yml
+
+check the end points configured at node service
+
+kubectl describe service metadataservice-nodeport
+
+get minikube-ip: minikube ip
+
+inside minikube ssh
+
+-> $ curl --header 'Content-Type: application/json' --data '{"group": "Dhivya","name": "city", "value": "Bangalore"}'  http://10.0.2.15:30000/metadata
+
+-> $ curl http://10.0.2.15:30000/metadata

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: metadata-replicaset
+  labels:
+    tier: metadatas-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: metadatas-app
+  template:
+    metadata:
+      labels:
+        tier: metadatas-app
+    spec:
+      containers:
+        - name: metacontainer-rs
+          image: luckyganesh/metadata-service:v1-arm
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 25
+            timeoutSeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 35
+            timeoutSeconds: 5
+            periodSeconds: 15
+            failureThreshold: 3

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: metadata-pod
+  labels:
+    tier: metadatas-app
+spec:
+  containers:
+     - name: metadatac
+       image: luckyganesh/metadata-service:v2-arm
+       ports:
+        - containerPort: 8080
+       env:
+        - name: MONGODB_URI
+          value: mongodb://mongo/metadata
+

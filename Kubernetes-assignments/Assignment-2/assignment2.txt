@@ -1,0 +1,27 @@
+1. Create replicaset for metadataService and deploy in k8s cluster
+2. Add livenessProbe and readinessProbe using spring actuator's /actuator/health endpoint
+3. POST to create an meta entry in database
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"group":"sunitprakash", "name":"city","value":"pune"}' \
+  http://pod-ip:port/metadata/
+4. GET all meta entry posted in step 1
+   curl http://pod-ip:port/metadata/
+
+Soln:
+
+1. kubectl create -f  metadata-replicaset.yml
+
+ verify pods created from rs
+ -> kubectl get pods -o wide (use one of the pod ip for post metadata)
+ -> kubectl get rs -o wide
+
+go inside minikube ssh
+
+2. curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"group":"dhivya", "name":"city","value":"Bangalore"}' \
+  http://10.244.0.19:8080/metadata/
+
+3. curl  http://10.244.0.19:8080/metadata/
+

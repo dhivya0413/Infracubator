@@ -1,0 +1,24 @@
+1. run the mongo db with the persistent volume using host path
+
+2. delete and recreate mongodb and see no data loss
+
+
+Modify mongo-deployment file by mount volume and provide path
+
+kubectl create -f metadata-deployment.yml
+
+Inside minikube ssh
+
+-> cd /metaservicedata    
+   ls
+
+-> kubectl exec -it mongos-deployment-644c78d796-x95kl -- sh
+
+#cd /data/db 
+#ls
+
+
+Both the volume has the same files
+
+Though deleted and recreated the deployment and verified that there is no change of persisted data in the path
+

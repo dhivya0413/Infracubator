@@ -1,0 +1,21 @@
+1. Create a nodeport Service for the metadataservice and access following via nodeport from host machine
+
+2. POST to create an meta entry in database
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"group":"sunitprakash", "name":"city","value":"pune"}' \
+  http://node-ip:nodeport/metadata/
+3. GET all meta entry posted in step 1
+   curl http://node-ip:nodeport/metadata/
+   Note: If GET returning empty array (no result) or only few entries, go to next exercise to learn why?
+
+Soln:
+
+1. kubectl create -f  nodeservice-def.yml
+
+Get nodeip and node port
+2. kubectl get service metadataservice-nodeport
+
+-> $ curl --header 'Content-Type: application/json' --data '{"group": "Dhivya","name": "city", "value": "Bangalore"}'  http://10.0.2.15:30000/metadata
+
+-> $ curl http://10.0.2.15:30000/metadata

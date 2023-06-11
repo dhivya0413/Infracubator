@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mongo-pod
+  labels:
+    tier: mongo-service
+spec:
+  containers:
+  - name: mongoc
+    image: mongo
+    ports:
+      - containerPort: 8080
+       
+   
